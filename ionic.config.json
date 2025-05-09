@@ -1,0 +1,7 @@
+{
+  "name": "multimedia-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
