@@ -45,5 +45,11 @@
           android:name="android.appwidget.provider"
           android:resource="@xml/my_widget_info" />
       </receiver>
+
+      <receiver android:name=".WidgetDownloadReceiver" android:exported="true">
+        <intent-filter>
+          <action android:name="io.ionic.starter.WIDGET_DOWNLOAD_AND_CACHE" />
+        </intent-filter>
+      </receiver>
     </application>
 </manifest>
