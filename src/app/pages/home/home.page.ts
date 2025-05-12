@@ -1,11 +1,10 @@
 import { LoaderService } from '../../shared/services/loader.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PictureService } from '../../core/services/picture.service';
 import { CameraService } from '../../core/services/camera.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BucketService } from '../../core/services/bucket.service';
 import { ToastService } from '../../shared/services/toast.service';
-import { StorageService } from 'src/app/core/services/storage.service';
 
 @Component({
   selector: 'app-home',
