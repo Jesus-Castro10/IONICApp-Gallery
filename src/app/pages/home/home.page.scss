@@ -1,27 +1,131 @@
-#container {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+* {
+  font-family: 'Poppins', sans-serif;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.save-picture-content {
+  --background: #ffffff;
+  display: flex;
+  justify-content: center;
 }
 
-#container p {
+.save-picture-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 0;
+  gap: 20px;
+}
+
+/* Para agrupar cada bloque visual */
+.form-block {
+  width: 360px;
+  max-width: 90vw;
+}
+
+/* Botón seleccionar imagen */
+.select-image-btn {
+  --background: #2962ff;
+  --color: #fff;
+  font-weight: 500;
   font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(41, 98, 255, 0.3);
 }
 
-#container a {
-  text-decoration: none;
+/* Imagen + marco */
+.preview-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.framed-preview {
+  width: 360px;
+  height: 240px;
+  padding: 4px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #3f51b5, #00bcd4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  background-color: white;
+}
+
+/* Placeholder si no hay imagen */
+.image-placeholder {
+  width: 360px;
+  height: 240px;
+  border: 2px dashed #ccc;
+  border-radius: 16px;
+  background-color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 14px;
+  text-align: center;
+  padding: 16px;
+}
+
+/* Input estilizado */
+.custom-input-item {
+  --background: transparent;
+  --highlight-height: 0;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  --min-height: 64px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: #fafafa;
+}
+
+.custom-label {
+  font-weight: 500;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Botón guardar */
+.save-btn {
+  --background: #d32f2f;
+  --color: white;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(211, 47, 47, 0.25);
+}
+
+ion-note {
+  font-size: 13px;
+  margin-left: 4px;
+}
+
+.error-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #d32f2f;
+  background: #fdecea;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13.5px;
+  font-weight: 500;
+  margin-top: -8px;
+  margin-bottom: 8px;
+
+  ion-icon {
+    font-size: 18px;
+    color: #d32f2f;
+  }
 }

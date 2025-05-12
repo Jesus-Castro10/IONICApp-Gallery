@@ -31,7 +31,7 @@ public class WidgetProvider extends AppWidgetProvider {
 
     new Thread(() -> {
       try {
-        String json = PreferencesBridge.getValue(ctx, "widget_entry", null);
+        String json = PreferencesBridge.getValue(ctx, "widget_entries", null);
         JSONArray array = new JSONArray(json);
         ArrayList<Bitmap> bitmaps = ImageDownloader.getAllBitmapsFromJSONArray(array);
 

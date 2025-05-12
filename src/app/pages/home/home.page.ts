@@ -23,7 +23,7 @@ export class HomePage implements OnInit {
     private cameraSrv: CameraService,
     private bucketSrv: BucketService,
     private loaderSrv: LoaderService,
-    private toastSrv: ToastService
+    private toastSrv: ToastService,
   ) {
     this.form = this.fb.group({
       description: ['', Validators.required],
@@ -32,11 +32,7 @@ export class HomePage implements OnInit {
   }
 
   async ngOnInit() {
-    this.pictureSrv.getById('lVq16jr4oJgVrgphqXKc').subscribe(data =>{
-        console.log(data)
-      }
-    );
-    
+    console.log('ngOnInit');
   }
 
   async pickImage() {
@@ -51,15 +47,13 @@ export class HomePage implements OnInit {
 
   async onSave() {
     if (!this.form.valid || !this.imageBlob) return;
-    alert('In onSave');
     try {
       this.loaderSrv.show('Guardando...');
       const fileName = `image-${Date.now()}.jpg`;
-      const imageUrl = await this.bucketSrv.uploadImage(this.imageBlob, fileName);
-      console.log('URL de la imagen:', imageUrl);
+      const url = await this.bucketSrv.uploadImage(this.imageBlob, fileName);
       const picture = {
         description: this.form.value.description,
-        imageUrl
+        url
       };
 
       this.pictureSrv.save(picture).then(() => {
@@ -77,4 +71,9 @@ export class HomePage implements OnInit {
       console.error('Error al guardar los datos:', err);
     }
   }
+
+  goList() {
+    window.location.href = '/picture-list';
+  }
+
 }

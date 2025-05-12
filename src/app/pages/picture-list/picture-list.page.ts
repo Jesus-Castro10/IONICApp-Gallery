@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PictureService } from 'src/app/core/services/picture.service';
+import { LoaderService } from 'src/app/shared/services/loader.service';
 
 @Component({
   selector: 'app-picture-list',
@@ -13,17 +14,25 @@ export class PictureListPage implements OnInit {
 
   constructor(private pictureSrv: PictureService,
     private router: Router,
+    private loaderSrv: LoaderService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.loaderSrv.show("Loading pictures...");
     this.pictureSrv.getAll().subscribe((pictures: any[]) => {
       this.pictures = pictures;
-      console.log(this.pictures);
+      this.loaderSrv.hide();
     });
   }
 
-  onSelect(picture: any) {
-    console.log(picture);
-    this.router.navigate(['picture-detail', picture.id]);
+  async onSelect(id: any) {
+    await this.router.navigate(['/picture-detail/' + id]);
   }
+
+  deletePicture(id: any) {
+    this.pictureSrv.delete(id).subscribe(() => {
+      this.pictures = this.pictures.filter(picture => picture.id !== id);
+    });
+  }
+
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collection, Firestore } from '@angular/fire/firestore';
+import { Preferences } from '@capacitor/preferences';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +7,13 @@ import { collection, Firestore } from '@angular/fire/firestore';
 export class StorageService {
 
   constructor() { }
-
+  
+  async saveEntry(entries: any) {
+    console.log('MyWidget Saving entries', entries);
+    await Preferences.set({
+      key: 'widget_entries',
+      value: JSON.stringify(entries),
+    });
+  }
 
 }

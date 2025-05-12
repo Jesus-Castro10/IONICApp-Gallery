@@ -1,25 +1,39 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>picture-list</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [title]="'Mi Galería'" [showHomeButton]="true"></app-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">picture-list</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-list>
-    <ion-item *ngFor="let picture of pictures" [button]="true" (click)="onSelect(picture)">
-      <ion-thumbnail slot="start">
-        <ion-img [src]="picture.imageUrl"></ion-img>
+<ion-content [fullscreen]="true" class="gallery-content">
+@if (pictures !== undefined && pictures.length > 0) {
+  <ion-list lines="none" class="enhanced-list">
+    <ion-item *ngFor="let picture of pictures" class="picture-item" [detail]="false" (click)="onSelect(picture.id)">
+      <ion-thumbnail slot="start" class="picture-thumbnail">
+        <div class="ring-wrapper">
+          <div class="ring-border"></div>
+          <div class="ring-inner">
+            <img [src]="picture.url" class="thumbnail-image" />
+          </div>
+        </div>
       </ion-thumbnail>
-      <ion-label>
-        <h2>{{ picture.description }}</h2>
-        <p>Fecha: {{ picture.createdAt | date: 'dd/MM/yyyy' }}</p>
+    
+      
+      <ion-label class="picture-label">
+        <h3 class="picture-title">{{ picture.description || 'Sin título' }}</h3>
+        <p class="picture-date">
+          <ion-icon name="calendar" class="date-icon"></ion-icon>
+          {{ picture.createdAt | date:'dd/MM/yyyy' }}
+        </p>
       </ion-label>
+      
+      <ion-button slot="end" fill="clear" class="delete-btn" (click)="deletePicture(picture.id); $event.stopPropagation()">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
     </ion-item>
   </ion-list>
+}@else {
+  <div class="empty-state">
+    <ion-icon name="images-outline" class="empty-icon"></ion-icon>
+    <ion-text color="medium">
+      <h2>No hay fotos en tu galería</h2>
+      <p>Toca el ícono de cámara para agregar una</p>
+    </ion-text>
+  </div>
+}
 </ion-content>

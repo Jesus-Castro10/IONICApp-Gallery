@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class WidgetDownloadReceiver extends BroadcastReceiver {
   @Override
   public void onReceive(Context context, Intent intent) {
-    String json = PreferencesBridge.getValue(context, "widget_entry", null);
+    String json = PreferencesBridge.getValue(context, "widget_entries", null);
     if (json == null || json.isEmpty()) {
       Log.e("WidgetDownloadReceiver", "No hay JSON guardado");
       return;

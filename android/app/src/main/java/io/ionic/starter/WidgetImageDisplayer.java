@@ -16,7 +16,7 @@ public class WidgetImageDisplayer {
 
   public static void showNext(Context context) {
     ImageCache cache = ImageCache.getInstance();
-
+    Log.d("MyWidget", "In ShowNext");
     if (!cache.isLoaded()) {
       Log.d("WidgetImageDisplayer", "Imágenes no cargadas todavía");
       return;
@@ -35,6 +35,7 @@ public class WidgetImageDisplayer {
       if (bitmap != null) {
         views.setImageViewBitmap(R.id.widget_image, bitmap);
       } else {
+        Log.d("MyWidget", "Is null image");
         views.setImageViewResource(R.id.widget_image, R.drawable.splash);
       }
 

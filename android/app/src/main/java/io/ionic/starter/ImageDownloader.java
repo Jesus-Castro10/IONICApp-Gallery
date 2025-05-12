@@ -45,7 +45,24 @@ public class ImageDownloader {
       connection.setDoInput(true);
       connection.connect();
       InputStream input = connection.getInputStream();
-      return BitmapFactory.decodeStream(input);
+      Bitmap original = BitmapFactory.decodeStream(input);
+
+      int maxWidth = 400;
+      int maxHeight = 400;
+
+      if (original.getWidth() > maxWidth || original.getHeight() > maxHeight) {
+        float scale = Math.min(
+          (float) maxWidth / original.getWidth(),
+          (float) maxHeight / original.getHeight()
+        );
+
+        int newWidth = Math.round(original.getWidth() * scale);
+        int newHeight = Math.round(original.getHeight() * scale);
+
+        return Bitmap.createScaledBitmap(original, newWidth, newHeight, true);
+      }
+
+      return original;
     } catch (Exception e) {
       Log.e("ImageDownloader", "Error descargando imagen: " + urlString, e);
       return null;

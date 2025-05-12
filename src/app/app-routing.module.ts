@@ -19,6 +19,7 @@ const routes: Routes = [
     path: 'picture-detail/:id',
     loadChildren: () => import('./pages/picture-detail/picture-detail.module').then( m => m.PictureDetailPageModule)
   },
+  
 ];
 
 @NgModule({
