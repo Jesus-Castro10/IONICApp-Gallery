@@ -20,8 +20,7 @@ public class ImageDownloader {
     for (int i = 0; i < array.length(); i++) {
       try {
         JSONObject obj = array.getJSONObject(i);
-        String imageUrl = obj.optString("image", "");
-
+        String imageUrl = obj.optString("url", "");
         if (!imageUrl.isEmpty()) {
           Bitmap bitmap = downloadImage(imageUrl);
           bitmapList.add(bitmap);

@@ -8,8 +8,7 @@ export class StorageService {
 
   constructor() { }
   
-  async saveEntry(entries: any) {
-    console.log('MyWidget Saving entries', entries);
+  async set(entries: any) {
     await Preferences.set({
       key: 'widget_entries',
       value: JSON.stringify(entries),

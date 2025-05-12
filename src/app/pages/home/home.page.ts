@@ -5,6 +5,7 @@ import { CameraService } from '../../core/services/camera.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BucketService } from '../../core/services/bucket.service';
 import { ToastService } from '../../shared/services/toast.service';
+import { StorageService } from 'src/app/core/services/storage.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ import { ToastService } from '../../shared/services/toast.service';
   styleUrls: ['home.page.scss'],
   standalone: false,
 })
-export class HomePage implements OnInit {
+export class HomePage{
   previewImage: string | null = null;
   imageBlob: Blob | null = null;
   form: FormGroup;
@@ -29,10 +30,6 @@ export class HomePage implements OnInit {
       description: ['', Validators.required],
       image: [null, Validators.required]
     });
-  }
-
-  async ngOnInit() {
-    console.log('ngOnInit');
   }
 
   async pickImage() {
@@ -70,10 +67,6 @@ export class HomePage implements OnInit {
     } catch (err) {
       console.error('Error al guardar los datos:', err);
     }
-  }
-
-  goList() {
-    window.location.href = '/picture-list';
   }
 
 }

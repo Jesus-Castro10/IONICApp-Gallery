@@ -32,7 +32,9 @@ public class WidgetProvider extends AppWidgetProvider {
     new Thread(() -> {
       try {
         String json = PreferencesBridge.getValue(ctx, "widget_entries", null);
+        Log.d("MyWidget" , "json " + json);
         JSONArray array = new JSONArray(json);
+        Log.d("MyWidget" , "Array " + array);
         ArrayList<Bitmap> bitmaps = ImageDownloader.getAllBitmapsFromJSONArray(array);
 
         ImageCache.getInstance().setEntries(array);

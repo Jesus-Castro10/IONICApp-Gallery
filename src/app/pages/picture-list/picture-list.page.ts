@@ -11,6 +11,9 @@ import { LoaderService } from 'src/app/shared/services/loader.service';
 })
 export class PictureListPage implements OnInit {
   pictures!: any[]
+  searchTerm: string = '';
+  filteredPictures: any[] = [];
+  isGridView: boolean = false;
 
   constructor(private pictureSrv: PictureService,
     private router: Router,
@@ -21,8 +24,16 @@ export class PictureListPage implements OnInit {
     await this.loaderSrv.show("Loading pictures...");
     this.pictureSrv.getAll().subscribe((pictures: any[]) => {
       this.pictures = pictures;
+      this.filteredPictures = pictures;
       this.loaderSrv.hide();
     });
+  }
+
+  filterPictures() {
+    const term = this.searchTerm.trim().toLowerCase();
+    this.filteredPictures = this.pictures.filter(p =>
+      p.description?.toLowerCase().includes(term)
+    );
   }
 
   async onSelect(id: any) {
@@ -35,4 +46,7 @@ export class PictureListPage implements OnInit {
     });
   }
 
+  toggleView() {
+    this.isGridView = !this.isGridView;
+  }
 }

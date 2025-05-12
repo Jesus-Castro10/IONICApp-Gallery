@@ -1,9 +1,19 @@
 <app-header [title]="'Mi Galería'" [showHomeButton]="true"></app-header>
 
-<ion-content [fullscreen]="true" class="gallery-content">
-@if (pictures !== undefined && pictures.length > 0) {
+<ion-content [fullscreen]="true" class="gallery-content" [ngClass]="{ 'grid-view': isGridView }">
+  <div class="search-bar-wrapper">
+    <ion-searchbar
+    [(ngModel)]="searchTerm"
+    (ionInput)="filterPictures()"
+      placeholder="Buscar por descripción..."
+      class="custom-search"
+      showClearButton="focus"
+      animated
+    ></ion-searchbar>
+  </div>
+@if (filteredPictures !== undefined && filteredPictures.length > 0) {
   <ion-list lines="none" class="enhanced-list">
-    <ion-item *ngFor="let picture of pictures" class="picture-item" [detail]="false" (click)="onSelect(picture.id)">
+    <ion-item *ngFor="let picture of filteredPictures" class="picture-item" [detail]="false" (click)="onSelect(picture.id)">
       <ion-thumbnail slot="start" class="picture-thumbnail">
         <div class="ring-wrapper">
           <div class="ring-border"></div>
@@ -27,6 +37,11 @@
       </ion-button>
     </ion-item>
   </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="toggleView()">
+      <ion-icon [name]="isGridView ? 'list-outline' : 'grid-outline'"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 }@else {
   <div class="empty-state">
     <ion-icon name="images-outline" class="empty-icon"></ion-icon>

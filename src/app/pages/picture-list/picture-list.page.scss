@@ -176,3 +176,29 @@
     margin: 0;
   }
 }
+
+.search-bar-wrapper {
+  padding: 8px;
+}
+
+ion-searchbar.custom-search {
+  --background: #fff;
+  --color: #222;
+  --placeholder-color: #999;
+  --border-radius: 12px;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2px;
+  font-size: 14px;
+}
+
+.gallery-content.grid-view .enhanced-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.gallery-content.grid-view .picture-item {
+  width: calc(50% - 12px);
+  flex-direction: column;
+  align-items: center;
+}
