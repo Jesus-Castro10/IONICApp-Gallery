@@ -72,3 +72,5 @@ Thumbs.db
 # Ignorar claves locales de Firebase
 src/environments/firebase.env.ts
 src/environments/supabase.env.ts
+
+/android
