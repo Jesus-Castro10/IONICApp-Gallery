@@ -15,7 +15,7 @@ public class WidgetDownloadReceiver extends BroadcastReceiver {
   public void onReceive(Context context, Intent intent) {
     String json = PreferencesBridge.getValue(context, "widget_entries", null);
     if (json == null || json.isEmpty()) {
-      Log.e("WidgetDownloadReceiver", "No hay JSON guardado");
+      Log.e("MyWidget", "No hay JSON guardado");
       return;
     }
 
@@ -27,10 +27,10 @@ public class WidgetDownloadReceiver extends BroadcastReceiver {
         ImageCache.getInstance().setEntries(array);
         ImageCache.getInstance().setBitmaps(bitmaps);
 
-        Log.d("WidgetDownloadReceiver", "Imágenes cacheadas desde Ionic");
+        Log.d("MyWidget", "Imágenes cacheadas desde Ionic");
 
       } catch (Exception e) {
-        Log.e("WidgetDownloadReceiver", "Error cacheando imágenes", e);
+        Log.e("MyWidget", "Error cacheando imágenes", e);
       }
     }).start();
   }

@@ -18,7 +18,7 @@ public class WidgetImageDisplayer {
     ImageCache cache = ImageCache.getInstance();
     Log.d("MyWidget", "In ShowNext");
     if (!cache.isLoaded()) {
-      Log.d("WidgetImageDisplayer", "Imágenes no cargadas todavía");
+      Log.d("MyWidget", "Imágenes no cargadas todavía");
       return;
     }
 
@@ -27,7 +27,7 @@ public class WidgetImageDisplayer {
 
     try {
       JSONObject entry = entries.getJSONObject(currentIndex);
-      String text = entry.optString("text", "Sin texto");
+      String text = entry.optString("description", "Sin texto");
 
       RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.my_widget);
       views.setTextViewText(R.id.widget_text, text);
@@ -46,7 +46,7 @@ public class WidgetImageDisplayer {
       currentIndex = (currentIndex + 1) % entries.length();
 
     } catch (Exception e) {
-      Log.e("WidgetImageDisplayer", "Error mostrando imagen", e);
+      Log.e("MyWidget", "Error mostrando imagen", e);
     }
   }
 }

@@ -4,5 +4,6 @@
   android:minHeight="110dp"
   android:updatePeriodMillis="5000"
   android:initialLayout="@layout/my_widget"
+  android:icon="@mipmap/ic_launcher"
   android:resizeMode="horizontal|vertical"
   android:widgetCategory="home_screen" />
